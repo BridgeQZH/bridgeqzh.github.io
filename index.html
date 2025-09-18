@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>你的名字 · 个人主页</title>
+  <meta name="description" content="个人主页 | 项目展示 | 技术博客" />
+  <meta property="og:title" content="你的名字 · 个人主页" />
+  <meta property="og:description" content="个人主页 | 项目展示 | 技术博客" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/000?v=4" />
+  <link rel="icon" href="https://fav.farm/🔥" />
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Markdown 渲染库 -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    /* 代码块样式（极简） */
+    pre {overflow:auto; padding: 1rem; border-radius: 0.75rem; background: rgba(0,0,0,.05)}
+    code {font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    /* 滚动条优化（可选） */
+    ::-webkit-scrollbar {height: 8px; width: 8px}
+    ::-webkit-scrollbar-thumb {background: rgba(100,100,100,.35); border-radius: 999px}
+  </style>
+</head>
+<body class="min-h-screen bg-white text-gray-900 antialiased transition-colors duration-300">
+  <!-- 顶部导航 -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#/" class="font-bold tracking-tight text-lg">你的名字</a>
+      <nav class="hidden sm:flex gap-6 text-sm">
+        <a href="#about" class="hover:opacity-70">关于我</a>
+        <a href="#skills" class="hover:opacity-70">技能栈</a>
+        <a href="#projects" class="hover:opacity-70">项目</a>
+        <a href="#blog" class="hover:opacity-70">博客</a>
+        <a href="#contact" class="hover:opacity-70">联系</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" class="px-3 py-1 rounded-full border text-xs">切换主题</button>
+        <a id="githubLink" href="https://github.com/yourname" target="_blank" class="text-sm underline">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体容器 -->
+  <main id="app" class="max-w-5xl mx-auto px-4 py-10">
+    <!-- 首页视图（默认） -->
+    <section id="homeView" class="space-y-16">
+      <!-- Hero -->
+      <section class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">你好，我是 <span class="text-indigo-600">你的名字</span> 👋</h1>
+          <p class="mt-4 text-gray-600">全栈爱好者 / 机器人与控制 / 数据分析。这里是我的个人主页，用来展示项目与写点博客。</p>
+          <div class="mt-6 flex gap-3">
+            <a href="#projects" class="px-4 py-2 rounded-xl bg-indigo-600 text-white">查看项目</a>
+            <a href="#blog" class="px-4 py-2 rounded-xl border">阅读博客</a>
+          </div>
+        </div>
+        <div class="md:justify-self-end">
+          <img src="https://picsum.photos/seed/devavatar/480/320" alt="banner" class="rounded-2xl shadow"/>
+        </div>
+      </section>
+
+      <!-- 关于我 -->
+      <section id="about" class="scroll-mt-24">
+        <h2 class="text-2xl font-bold">关于我</h2>
+        <p class="mt-3 text-gray-700">简单介绍你的背景与方向。比如：KTH 机器人硕士，喜欢桥牌与德扑，熟悉 Python、Pandas、OS、前端基础与 Git 工作流等。</p>
+        <ul class="mt-4 list-disc list-inside text-gray-700">
+          <li>目前关注：全栈入门、可视化、数据工程</li>
+          <li>可合作：自由职业项目 / 远程实习 / 咨询</li>
+          <li>开源爱好者，欢迎交流 Star 与 PR</li>
+        </ul>
+      </section>
+
+      <!-- 技能栈 -->
+      <section id="skills" class="scroll-mt-24">
+        <h2 class="text-2xl font-bold">技能栈</h2>
+        <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="p-4 rounded-2xl border">
+            <h3 class="font-semibold">前端</h3>
+            <p class="text-gray-600 text-sm mt-1">HTML5, CSS3, JavaScript, Tailwind CSS, 少量 React</p>
+          </div>
+          <div class="p-4 rounded-2xl border">
+            <h3 class="font-semibold">后端</h3>
+            <p class="text-gray-600 text-sm mt-1">Python (Flask/FastAPI 基础), 路由、模板、API 设计</p>
+          </div>
+          <div class="p-4 rounded-2xl border">
+            <h3 class="font-semibold">工具链</h3>
+            <p class="text-gray-600 text-sm mt-1">Git/GitHub, GitHub Pages, GitHub Actions, Markdown</p>
+          </div>
+          <div class="p-4 rounded-2xl border">
+            <h3 class="font-semibold">数据</h3>
+            <p class="text-gray-600 text-sm mt-1">Pandas, 可视化（matplotlib 基础），Jupyter</p>
+          </div>
+          <div class="p-4 rounded-2xl border">
+            <h3 class="font-semibold">部署</h3>
+            <p class="text-gray-600 text-sm mt-1">静态站点（GitHub Pages）、自定义域名、SEO 基础</p>
+          </div>
+          <div class="p-4 rounded-2xl border">
+            <h3 class="font-semibold">其他</h3>
+            <p class="text-gray-600 text-sm mt-1">Bridge/扑克类项目、机器人/控制Demo、小脚本</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目 -->
+      <section id="projects" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold">项目</h2>
+          <a href="https://github.com/yourname?tab=repositories" target="_blank" class="text-sm underline">更多 →</a>
+        </div>
+        <div id="projectList" class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- 博客（列表） -->
+      <section id="blog" class="scroll-mt-24">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold">博客</h2>
+          <a href="#/post/hello-world" class="text-sm underline">示例：Hello World →</a>
+        </div>
+        <div id="postList" class="mt-4 grid md:grid-cols-2 gap-4"></div>
+        <p class="mt-2 text-sm text-gray-500">将 Markdown 文件放到 <code>/posts</code> 目录，点击列表进入阅读。</p>
+      </section>
+
+      <!-- 联系方式 -->
+      <section id="contact" class="scroll-mt-24">
+        <h2 class="text-2xl font-bold">联系</h2>
+        <p class="mt-3 text-gray-700">邮箱：<a href="mailto:you@example.com" class="underline">you@example.com</a> · 领英：<a class="underline" target="_blank" href="https://www.linkedin.com/in/yourname">yourname</a></p>
+      </section>
+    </section>
+
+    <!-- 文章阅读视图 -->
+    <section id="postView" class="hidden">
+      <article id="postContainer" class="prose prose-indigo max-w-none">
+        <!-- 文章内容将注入到这里 -->
+      </article>
+      <div class="mt-8">
+        <a href="#/" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border">← 返回首页</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8 border-t text-center text-sm text-gray-500">
+    © <span id="year"></span> 你的名字. 由 GitHub Pages 驱动。
+  </footer>
+
+  <script>
+    // ====== 基本配置（改成你的信息） ======
+    const SITE = {
+      owner: "你的名字",
+      github: "yourname",
+      // 在 /posts 目录下放置 markdown 文件，如 hello-world.md
+      posts: [
+        { title: "Hello World", slug: "hello-world", date: "2025-09-18", tags: ["入门", "公告"] },
+        // { title: "第二篇文章", slug: "second-post", date: "2025-09-20", tags: ["技术", "Python"] },
+      ],
+      projects: [
+        {
+          name: "桥牌计分器",
+          desc: "用原生 JS 实现的桥牌计分与牌局记录工具。",
+          repo: "bridge-scoreboard",
+          tech: ["HTML", "JS"],
+        },
+        {
+          name: "德扑手牌可视化",
+          desc: "基于 Python 的德州扑克手牌范围可视化脚本。",
+          repo: "poker-range-plot",
+          tech: ["Python", "matplotlib"],
+        },
+        {
+          name: "机器人控制Demo",
+          desc: "简单的 PID/状态空间控制可视化交互页面。",
+          repo: "robot-control-demo",
+          tech: ["JS", "控制"],
+        },
+      ],
+    };
+
+    // ====== 主题切换 ======
+    const themeBtn = document.getElementById('themeToggle');
+    function setTheme(dark){
+      const root = document.documentElement;
+      if(dark){
+        root.classList.add('dark');
+        document.body.classList.add('bg-gray-950','text-gray-100');
+      } else {
+        root.classList.remove('dark');
+        document.body.classList.remove('bg-gray-950','text-gray-100');
+      }
+      localStorage.setItem('themeDark', dark ? '1' : '0');
+    }
+    themeBtn.addEventListener('click', ()=> setTheme(!(localStorage.getItem('themeDark')==='1')));
+    setTheme(localStorage.getItem('themeDark')==='1');
+
+    // ====== 年份与链接 ======
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('githubLink').href = `https://github.com/${SITE.github}`;
+
+    // ====== 渲染项目卡片 ======
+    function renderProjects(){
+      const box = document.getElementById('projectList');
+      box.innerHTML = '';
+      SITE.projects.forEach(p => {
+        const href = `https://github.com/${SITE.github}/${p.repo}`;
+        const tech = p.tech.map(t=>`<span class='px-2 py-0.5 text-xs rounded-full border'>${t}</span>`).join(' ');
+        const el = document.createElement('a');
+        el.className = 'block p-4 rounded-2xl border hover:shadow';
+        el.href = href; el.target = '_blank';
+        el.innerHTML = `<h3 class='font-semibold'>${p.name}</h3>
+                        <p class='text-sm text-gray-600 mt-1'>${p.desc}</p>
+                        <div class='mt-3 flex gap-2 flex-wrap'>${tech}</div>`;
+        box.appendChild(el);
+      });
+    }
+
+    // ====== 渲染博客列表 ======
+    function renderPostList(){
+      const box = document.getElementById('postList');
+      box.innerHTML = '';
+      SITE.posts
+        .sort((a,b)=> new Date(b.date) - new Date(a.date))
+        .forEach(post => {
+          const url = `#/post/${post.slug}`;
+          const tags = (post.tags||[]).map(t=>`<span class='px-2 py-0.5 text-xs rounded-full border'>${t}</span>`).join(' ');
+          const el = document.createElement('a');
+          el.className = 'block p-4 rounded-2xl border hover:shadow';
+          el.href = url;
+          el.innerHTML = `<h3 class='font-semibold'>${post.title}</h3>
+                          <p class='text-sm text-gray-500 mt-1'>${post.date}</p>
+                          <div class='mt-3 flex gap-2 flex-wrap'>${tags}</div>`;
+          box.appendChild(el);
+        });
+    }
+
+    // ====== 简单路由：#/ 与 #/post/:slug ======
+    const homeView = document.getElementById('homeView');
+    const postView = document.getElementById('postView');
+    const postContainer = document.getElementById('postContainer');
+
+    async function showPost(slug){
+      homeView.classList.add('hidden');
+      postView.classList.remove('hidden');
+      // 从 /posts 目录加载 markdown
+      const url = `posts/${slug}.md`;
+      try {
+        const res = await fetch(url);
+        if(!res.ok) throw new Error('not found');
+        const md = await res.text();
+        postContainer.innerHTML = marked.parse(md);
+      } catch (e){
+        postContainer.innerHTML = marked.parse(`# 未找到文章\n\n没有找到 **${slug}.md**。\n\n请在仓库根目录新建 **/posts/${slug}.md**，或者修改 \`SITE.posts\` 列表。`);
+      }
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function showHome(){
+      postView.classList.add('hidden');
+      homeView.classList.remove('hidden');
+    }
+
+    function router(){
+      const h = location.hash.slice(1); // remove '#'
+      if(!h || h === '/') { showHome(); return; }
+      const m = h.match(/^\/post\/([A-Za-z0-9-_]+)/);
+      if(m){ showPost(m[1]); return; }
+      showHome();
+    }
+    window.addEventListener('hashchange', router);
+
+    // ====== 初始化 ======
+    renderProjects();
+    renderPostList();
+    router();
+  </script>
+</body>
+</html>
