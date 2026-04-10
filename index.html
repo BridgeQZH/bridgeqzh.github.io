@@ -1,276 +1,539 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>你的名字 · 个人主页</title>
-  <meta name="description" content="个人主页 | 项目展示 | 技术博客" />
-  <meta property="og:title" content="你的名字 · 个人主页" />
-  <meta property="og:description" content="个人主页 | 项目展示 | 技术博客" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://avatars.githubusercontent.com/u/000?v=4" />
-  <link rel="icon" href="https://fav.farm/🔥" />
-  <!-- Tailwind via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Markdown 渲染库 -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zihan Qiao</title>
+  <meta name="description" content="Personal website of Zihan Qiao: robotics, control, autonomous systems, and AI.">
+  <link rel="icon" type="image/svg+xml" href="images/zq-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet">
   <style>
-    /* 代码块样式（极简） */
-    pre {overflow:auto; padding: 1rem; border-radius: 0.75rem; background: rgba(0,0,0,.05)}
-    code {font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    /* 滚动条优化（可选） */
-    ::-webkit-scrollbar {height: 8px; width: 8px}
-    ::-webkit-scrollbar-thumb {background: rgba(100,100,100,.35); border-radius: 999px}
+    :root {
+      --bg: #f6f0e8;
+      --paper: #fffdf8;
+      --paper-strong: #fff8ef;
+      --ink: #1f2a2b;
+      --muted: #5c6b69;
+      --line: #d6c8b4;
+      --accent: #1d6a6d;
+      --accent-soft: #d8ece8;
+      --accent-warm: #d88943;
+      --shadow: 0 18px 45px rgba(31, 42, 43, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(216, 236, 232, 0.95), transparent 30%),
+        radial-gradient(circle at top right, rgba(216, 136, 67, 0.15), transparent 24%),
+        linear-gradient(180deg, #f9f4ed 0%, #f6f0e8 50%, #efe6d8 100%);
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--accent-warm);
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    pageheading,
+    sectionheading,
+    heading {
+      display: inline-block;
+    }
+
+    pageheading {
+      font-family: "Newsreader", serif;
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    sectionheading {
+      font-family: "Newsreader", serif;
+      font-size: 2rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    heading {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 0 0 15px;
+    }
+
+    .site-shell {
+      width: min(1040px, calc(100vw - 28px));
+      margin: 28px auto;
+      background: rgba(255, 253, 248, 0.84);
+      border: 1px solid rgba(214, 200, 180, 0.75);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 22px 22px 10px;
+      background:
+        linear-gradient(135deg, rgba(255, 248, 239, 0.95), rgba(216, 236, 232, 0.7)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+      border-bottom: 1px solid rgba(214, 200, 180, 0.8);
+    }
+
+    .hero-table {
+      width: 100%;
+    }
+
+    .hero-table td {
+      padding: 14px;
+      vertical-align: top;
+    }
+
+    .profile-frame {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 248, 239, 0.95));
+      border: 1px solid rgba(214, 200, 180, 0.9);
+      border-radius: 24px;
+      padding: 14px;
+    }
+
+    .profile-frame img {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(214, 200, 180, 0.7);
+      background: var(--paper-strong);
+    }
+
+    .link-row {
+      margin-top: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .link-row a {
+      display: inline-block;
+      margin: 6px 8px;
+      padding: 7px 12px;
+      background: rgba(216, 236, 232, 0.75);
+      border: 1px solid rgba(29, 106, 109, 0.12);
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(29, 106, 109, 0.08);
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      padding-top: 10px;
+    }
+
+    .hero-copy p {
+      font-size: 1.02rem;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent-warm);
+      border-radius: 16px;
+      background: rgba(255, 248, 239, 0.85);
+      color: #4f5857;
+    }
+
+    .section {
+      padding: 20px 22px 10px;
+    }
+
+    .section + .section {
+      border-top: 1px solid rgba(214, 200, 180, 0.6);
+    }
+
+    .section-heading {
+      margin-bottom: 16px;
+    }
+
+    .intro-line {
+      color: var(--muted);
+      margin-top: 6px;
+      max-width: 760px;
+    }
+
+    .highlights {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .highlights li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .cards {
+      width: 100%;
+    }
+
+    .cards td {
+      width: 50%;
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    .card {
+      height: 100%;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(214, 200, 180, 0.85);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 239, 0.86));
+      box-shadow: 0 10px 24px rgba(31, 42, 43, 0.05);
+    }
+
+    .meta {
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.93rem;
+      font-weight: 700;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 3px 6px 0 0;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #215456;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .placeholder-card {
+      background:
+        linear-gradient(180deg, rgba(216, 236, 232, 0.42), rgba(255, 255, 255, 0.95)),
+        linear-gradient(135deg, rgba(255, 248, 239, 0.9), rgba(255, 255, 255, 0.9));
+      border-style: dashed;
+    }
+
+    .cv-panel {
+      padding: 18px;
+      border: 1px solid rgba(214, 200, 180, 0.85);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(216, 236, 232, 0.32));
+    }
+
+    .button-row {
+      margin: 14px 0 16px;
+    }
+
+    .button-row a {
+      display: inline-block;
+      margin: 8px 10px 0 0;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(29, 106, 109, 0.18);
+      background: #ffffff;
+      font-weight: 800;
+    }
+
+    .button-row a.primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: 640px;
+      border: 1px solid rgba(214, 200, 180, 0.85);
+      border-radius: 18px;
+      background: #ffffff;
+    }
+
+    .footer {
+      padding: 18px 24px 26px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .hero-table,
+      .hero-table tbody,
+      .hero-table tr,
+      .hero-table td,
+      .cards,
+      .cards tbody,
+      .cards tr,
+      .cards td {
+        display: block;
+        width: 100%;
+      }
+
+      .hero {
+        padding-bottom: 14px;
+      }
+
+      .hero-table td,
+      .cards td {
+        padding: 10px 0;
+      }
+
+      .site-shell {
+        width: min(100vw - 18px, 1040px);
+        margin: 10px auto;
+        border-radius: 20px;
+      }
+
+      .section,
+      .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .pdf-frame {
+        height: 520px;
+      }
+    }
   </style>
 </head>
-<body class="min-h-screen bg-white text-gray-900 antialiased transition-colors duration-300">
-  <!-- 顶部导航 -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-gray-200">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#/" class="font-bold tracking-tight text-lg">你的名字</a>
-      <nav class="hidden sm:flex gap-6 text-sm">
-        <a href="#about" class="hover:opacity-70">关于我</a>
-        <a href="#skills" class="hover:opacity-70">技能栈</a>
-        <a href="#projects" class="hover:opacity-70">项目</a>
-        <a href="#blog" class="hover:opacity-70">博客</a>
-        <a href="#contact" class="hover:opacity-70">联系</a>
-      </nav>
-      <div class="flex items-center gap-2">
-        <button id="themeToggle" class="px-3 py-1 rounded-full border text-xs">切换主题</button>
-        <a id="githubLink" href="https://github.com/yourname" target="_blank" class="text-sm underline">GitHub</a>
-      </div>
-    </div>
-  </header>
+<body>
+  <table class="site-shell" align="center" role="presentation">
+    <tr>
+      <td>
+        <div class="hero">
+          <table class="hero-table" role="presentation">
+            <tr>
+              <td width="32%">
+                <div class="profile-frame">
+                  <!-- Replace images/profile-placeholder.svg with your own portrait when ready. -->
+                  <a href="images/profile-placeholder.svg">
+                    <img src="images/profile-placeholder.svg" alt="Placeholder portrait for Zihan Qiao">
+                  </a>
+                </div>
+                <div class="link-row">
+                  <a href="data/ZihanQiao_CV.pdf">CV</a>
+                  <a href="mailto:zihanqiao@gmail.com">Email</a>
+                  <a href="https://linkedin.com/in/zihan-qiao-541191193/">LinkedIn</a>
+                  <a href="https://github.com/BridgeQZH">GitHub</a>
+                </div>
+              </td>
+              <td width="68%">
+                <div class="hero-copy">
+                  <span class="eyebrow">Personal Website</span><br>
+                  <pageheading>Zihan Qiao</pageheading>
+                  <p class="intro-line">Robotics, control, autonomous systems, and AI engineer with a strong interest in building practical systems that connect research ideas to real-world deployment.</p>
+                  <p>I studied <strong>Systems, Control and Robotics</strong> at <strong>KTH Royal Institute of Technology</strong> and earned my bachelor's degree in <strong>Electrical Engineering (Automation)</strong> from <strong>Zhejiang University</strong>. My background combines robotics, perception, planning, reinforcement learning, and production-focused engineering.</p>
+                  <p>Across automotive and autonomous systems work, I have built and tuned control models, debugged system-level integration issues, developed real-time ROS perception and navigation pipelines, and shipped projects spanning drone autonomy, adaptive traffic signal control, and full-stack web applications.</p>
+                  <p>I enjoy work that sits at the boundary of <strong>intelligent systems</strong> and <strong>usable products</strong>: robust enough for reality, but still ambitious enough to be exciting. Outside engineering, I also care about bridge, magic, film, and creative online content.</p>
+                  <div class="hero-note">
+                    This homepage is set up so you can keep expanding it. You can replace the portrait, update the CV in <code>data/</code>, and add more sections or files as your personal site grows.
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
 
-  <!-- 主体容器 -->
-  <main id="app" class="max-w-5xl mx-auto px-4 py-10">
-    <!-- 首页视图（默认） -->
-    <section id="homeView" class="space-y-16">
-      <!-- Hero -->
-      <section class="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">你好，我是 <span class="text-indigo-600">你的名字</span> 👋</h1>
-          <p class="mt-4 text-gray-600">全栈爱好者 / 机器人与控制 / 数据分析。这里是我的个人主页，用来展示项目与写点博客。</p>
-          <div class="mt-6 flex gap-3">
-            <a href="#projects" class="px-4 py-2 rounded-xl bg-indigo-600 text-white">查看项目</a>
-            <a href="#blog" class="px-4 py-2 rounded-xl border">阅读博客</a>
+        <div class="section">
+          <div class="section-heading">
+            <sectionheading>Snapshot</sectionheading>
+            <p class="intro-line">A quick overview pulled from your CV so the page already has real content instead of placeholders only.</p>
+          </div>
+          <ul class="highlights">
+            <li>Education: M.S. in Systems, Control and Robotics at KTH Royal Institute of Technology; B.S. in Electrical Engineering (Automation) at Zhejiang University.</li>
+            <li>Technical focus: ROS, SLAM, path planning, computer vision, PyTorch, reinforcement learning, MATLAB/Simulink, Python, C/C++, and production engineering workflows.</li>
+            <li>Industry experience: BorgWarner and Volvo Group Trucks Technology, working on control systems, verification, architecture, and integration debugging.</li>
+            <li>Autonomous systems experience: perception, navigation, MPC path tracking, CV-based recognition, and mission planning in real-world robotics settings.</li>
+            <li>Personal strengths: turning technically complex ideas into working systems, and moving comfortably between research-style prototyping and structured delivery.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <div class="section-heading">
+            <sectionheading>Experience</sectionheading>
+          </div>
+          <table class="cards" role="presentation">
+            <tr>
+              <td>
+                <div class="card">
+                  <heading>BorgWarner</heading>
+                  <div class="meta">Consultant via Combine AB · Landskrona · Sep 2023 to Aug 2025</div>
+                  <p>Worked on hybrid powertrain actuator systems, developing and tuning MATLAB/Simulink control models across multiple functional units.</p>
+                  <p>Tracked down parameter-drift issues behind intermittent MiL/SiL failures and helped improve verification pass rates across product variants.</p>
+                  <span class="tag">MATLAB/Simulink</span>
+                  <span class="tag">Control Systems</span>
+                  <span class="tag">Verification</span>
+                </div>
+              </td>
+              <td>
+                <div class="card">
+                  <heading>Volvo Group Trucks Technology</heading>
+                  <div class="meta">Consultant via Combine AB · Gothenburg · Oct 2022 to Jun 2023</div>
+                  <p>Resolved cross-team integration issues by tracing timing and signal configuration problems across CAN logs, SE-tool definitions, and DBC files.</p>
+                  <p>Designed software architecture for an autonomous vehicle input/output module and prepared a production-ready handover package.</p>
+                  <span class="tag">Automotive</span>
+                  <span class="tag">Systems Integration</span>
+                  <span class="tag">Architecture</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="card">
+                  <heading>KTH Formula Student Driverless</heading>
+                  <div class="meta">Perception and Navigation Engineer · Stockholm · Aug 2019 to Jun 2021</div>
+                  <p>Built ROS-based perception for stereo-camera cone detection and helped bring latency within the control-loop deadline.</p>
+                  <p>Implemented MPC path tracking on a real electric race car and tuned behavior for stable autonomous driving on unseen track layouts.</p>
+                  <span class="tag">ROS</span>
+                  <span class="tag">Perception</span>
+                  <span class="tag">MPC</span>
+                </div>
+              </td>
+              <td>
+                <div class="card placeholder-card">
+                  <heading>Next Role / New Section</heading>
+                  <div class="meta">Reserved space for future updates</div>
+                  <p>You can duplicate this card later for new work, publications, research, consulting, teaching, or anything else you want to highlight on the homepage.</p>
+                  <span class="tag">Editable</span>
+                  <span class="tag">Future Content</span>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="section">
+          <div class="section-heading">
+            <sectionheading>Selected Projects</sectionheading>
+          </div>
+          <table class="cards" role="presentation">
+            <tr>
+              <td>
+                <div class="card">
+                  <heading>CR Texas</heading>
+                  <div class="meta">Personal project · Jul 2025 to present</div>
+                  <p>Built a full-stack web app inspired by Clash Royale and Texas Hold'em, with seed-based card dealing for reproducible shared sessions.</p>
+                  <p>Added bilingual CN/EN support, responsive UI, deck statistics, and import-friendly interaction design.</p>
+                  <span class="tag">Python</span>
+                  <span class="tag">Flask</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+              </td>
+              <td>
+                <div class="card">
+                  <heading>Adaptive Traffic Signal Control</heading>
+                  <div class="meta">Master thesis · KTH · Nov 2020 to Jun 2021</div>
+                  <p>Designed a DQN-based agent with rollout look-ahead in PyTorch for real-time traffic signal optimization.</p>
+                  <p>Improved throughput and vehicle delay performance compared with fixed-timing and standard DQN baselines across changing traffic densities.</p>
+                  <span class="tag">Reinforcement Learning</span>
+                  <span class="tag">PyTorch</span>
+                  <span class="tag">Optimization</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="card">
+                  <heading>Autonomous Drone</heading>
+                  <div class="meta">Vision, SLAM, and mission planning · Feb 2020 to Jun 2020</div>
+                  <p>Integrated computer vision landmark recognition, SLAM mapping, and A* path planning into a Python/ROS autonomous drone system.</p>
+                  <p>Demonstrated a full pickup-and-return mission in a physical indoor obstacle environment.</p>
+                  <span class="tag">SLAM</span>
+                  <span class="tag">A*</span>
+                  <span class="tag">Mission Planning</span>
+                </div>
+              </td>
+              <td>
+                <div class="card placeholder-card">
+                  <heading>More Projects Here</heading>
+                  <div class="meta">Add papers, demos, blog posts, or side projects</div>
+                  <p>This slot is intentionally left open so you can add more personal content later without redesigning the page.</p>
+                  <span class="tag">Portfolio</span>
+                  <span class="tag">Writing</span>
+                  <span class="tag">Demos</span>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="section">
+          <div class="section-heading">
+            <sectionheading>CV</sectionheading>
+            <p class="intro-line">The CV is available as a direct file under <code>/data/</code>, so visitors can open it from the site or by direct URL.</p>
+          </div>
+          <div class="cv-panel">
+            <p>The current public path is <a href="data/ZihanQiao_CV.pdf"><code>https://zihanqiao.com/data/ZihanQiao_CV.pdf</code></a> once the custom domain points to this GitHub Pages site.</p>
+            <div class="button-row">
+              <a class="primary" href="data/ZihanQiao_CV.pdf">Open CV</a>
+              <a href="data/ZihanQiao_CV.pdf" download>Download CV</a>
+            </div>
+            <iframe class="pdf-frame" src="data/ZihanQiao_CV.pdf" title="Zihan Qiao CV"></iframe>
           </div>
         </div>
-        <div class="md:justify-self-end">
-          <img src="https://picsum.photos/seed/devavatar/480/320" alt="banner" class="rounded-2xl shadow"/>
+
+        <div class="section">
+          <div class="section-heading">
+            <sectionheading>Build On This</sectionheading>
+            <p class="intro-line">These are simple content areas you can keep using as the site evolves.</p>
+          </div>
+          <table class="cards" role="presentation">
+            <tr>
+              <td>
+                <div class="card placeholder-card">
+                  <heading>Writing</heading>
+                  <p>Add essays, notes, reflections, or technical blog posts here. You can link them from this section later.</p>
+                </div>
+              </td>
+              <td>
+                <div class="card placeholder-card">
+                  <heading>Media</heading>
+                  <p>Use the <code>images/</code> folder for portraits, project visuals, diagrams, or screenshots as you expand the site.</p>
+                </div>
+              </td>
+            </tr>
+          </table>
         </div>
-      </section>
 
-      <!-- 关于我 -->
-      <section id="about" class="scroll-mt-24">
-        <h2 class="text-2xl font-bold">关于我</h2>
-        <p class="mt-3 text-gray-700">简单介绍你的背景与方向。比如：KTH 机器人硕士，喜欢桥牌与德扑，熟悉 Python、Pandas、OS、前端基础与 Git 工作流等。</p>
-        <ul class="mt-4 list-disc list-inside text-gray-700">
-          <li>目前关注：全栈入门、可视化、数据工程</li>
-          <li>可合作：自由职业项目 / 远程实习 / 咨询</li>
-          <li>开源爱好者，欢迎交流 Star 与 PR</li>
-        </ul>
-      </section>
-
-      <!-- 技能栈 -->
-      <section id="skills" class="scroll-mt-24">
-        <h2 class="text-2xl font-bold">技能栈</h2>
-        <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="p-4 rounded-2xl border">
-            <h3 class="font-semibold">前端</h3>
-            <p class="text-gray-600 text-sm mt-1">HTML5, CSS3, JavaScript, Tailwind CSS, 少量 React</p>
-          </div>
-          <div class="p-4 rounded-2xl border">
-            <h3 class="font-semibold">后端</h3>
-            <p class="text-gray-600 text-sm mt-1">Python (Flask/FastAPI 基础), 路由、模板、API 设计</p>
-          </div>
-          <div class="p-4 rounded-2xl border">
-            <h3 class="font-semibold">工具链</h3>
-            <p class="text-gray-600 text-sm mt-1">Git/GitHub, GitHub Pages, GitHub Actions, Markdown</p>
-          </div>
-          <div class="p-4 rounded-2xl border">
-            <h3 class="font-semibold">数据</h3>
-            <p class="text-gray-600 text-sm mt-1">Pandas, 可视化（matplotlib 基础），Jupyter</p>
-          </div>
-          <div class="p-4 rounded-2xl border">
-            <h3 class="font-semibold">部署</h3>
-            <p class="text-gray-600 text-sm mt-1">静态站点（GitHub Pages）、自定义域名、SEO 基础</p>
-          </div>
-          <div class="p-4 rounded-2xl border">
-            <h3 class="font-semibold">其他</h3>
-            <p class="text-gray-600 text-sm mt-1">Bridge/扑克类项目、机器人/控制Demo、小脚本</p>
-          </div>
+        <div class="footer">
+          zihanqiao.com is now prepared to serve as your personal homepage through GitHub Pages.
         </div>
-      </section>
-
-      <!-- 项目 -->
-      <section id="projects" class="scroll-mt-24">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-bold">项目</h2>
-          <a href="https://github.com/yourname?tab=repositories" target="_blank" class="text-sm underline">更多 →</a>
-        </div>
-        <div id="projectList" class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-      </section>
-
-      <!-- 博客（列表） -->
-      <section id="blog" class="scroll-mt-24">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-bold">博客</h2>
-          <a href="#/post/hello-world" class="text-sm underline">示例：Hello World →</a>
-        </div>
-        <div id="postList" class="mt-4 grid md:grid-cols-2 gap-4"></div>
-        <p class="mt-2 text-sm text-gray-500">将 Markdown 文件放到 <code>/posts</code> 目录，点击列表进入阅读。</p>
-      </section>
-
-      <!-- 联系方式 -->
-      <section id="contact" class="scroll-mt-24">
-        <h2 class="text-2xl font-bold">联系</h2>
-        <p class="mt-3 text-gray-700">邮箱：<a href="mailto:you@example.com" class="underline">you@example.com</a> · 领英：<a class="underline" target="_blank" href="https://www.linkedin.com/in/yourname">yourname</a></p>
-      </section>
-    </section>
-
-    <!-- 文章阅读视图 -->
-    <section id="postView" class="hidden">
-      <article id="postContainer" class="prose prose-indigo max-w-none">
-        <!-- 文章内容将注入到这里 -->
-      </article>
-      <div class="mt-8">
-        <a href="#/" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border">← 返回首页</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="py-8 border-t text-center text-sm text-gray-500">
-    © <span id="year"></span> 你的名字. 由 GitHub Pages 驱动。
-  </footer>
-
-  <script>
-    // ====== 基本配置（改成你的信息） ======
-    const SITE = {
-      owner: "你的名字",
-      github: "yourname",
-      // 在 /posts 目录下放置 markdown 文件，如 hello-world.md
-      posts: [
-        { title: "Hello World", slug: "hello-world", date: "2025-09-18", tags: ["入门", "公告"] },
-        // { title: "第二篇文章", slug: "second-post", date: "2025-09-20", tags: ["技术", "Python"] },
-      ],
-      projects: [
-        {
-          name: "桥牌计分器",
-          desc: "用原生 JS 实现的桥牌计分与牌局记录工具。",
-          repo: "bridge-scoreboard",
-          tech: ["HTML", "JS"],
-        },
-        {
-          name: "德扑手牌可视化",
-          desc: "基于 Python 的德州扑克手牌范围可视化脚本。",
-          repo: "poker-range-plot",
-          tech: ["Python", "matplotlib"],
-        },
-        {
-          name: "机器人控制Demo",
-          desc: "简单的 PID/状态空间控制可视化交互页面。",
-          repo: "robot-control-demo",
-          tech: ["JS", "控制"],
-        },
-      ],
-    };
-
-    // ====== 主题切换 ======
-    const themeBtn = document.getElementById('themeToggle');
-    function setTheme(dark){
-      const root = document.documentElement;
-      if(dark){
-        root.classList.add('dark');
-        document.body.classList.add('bg-gray-950','text-gray-100');
-      } else {
-        root.classList.remove('dark');
-        document.body.classList.remove('bg-gray-950','text-gray-100');
-      }
-      localStorage.setItem('themeDark', dark ? '1' : '0');
-    }
-    themeBtn.addEventListener('click', ()=> setTheme(!(localStorage.getItem('themeDark')==='1')));
-    setTheme(localStorage.getItem('themeDark')==='1');
-
-    // ====== 年份与链接 ======
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('githubLink').href = `https://github.com/${SITE.github}`;
-
-    // ====== 渲染项目卡片 ======
-    function renderProjects(){
-      const box = document.getElementById('projectList');
-      box.innerHTML = '';
-      SITE.projects.forEach(p => {
-        const href = `https://github.com/${SITE.github}/${p.repo}`;
-        const tech = p.tech.map(t=>`<span class='px-2 py-0.5 text-xs rounded-full border'>${t}</span>`).join(' ');
-        const el = document.createElement('a');
-        el.className = 'block p-4 rounded-2xl border hover:shadow';
-        el.href = href; el.target = '_blank';
-        el.innerHTML = `<h3 class='font-semibold'>${p.name}</h3>
-                        <p class='text-sm text-gray-600 mt-1'>${p.desc}</p>
-                        <div class='mt-3 flex gap-2 flex-wrap'>${tech}</div>`;
-        box.appendChild(el);
-      });
-    }
-
-    // ====== 渲染博客列表 ======
-    function renderPostList(){
-      const box = document.getElementById('postList');
-      box.innerHTML = '';
-      SITE.posts
-        .sort((a,b)=> new Date(b.date) - new Date(a.date))
-        .forEach(post => {
-          const url = `#/post/${post.slug}`;
-          const tags = (post.tags||[]).map(t=>`<span class='px-2 py-0.5 text-xs rounded-full border'>${t}</span>`).join(' ');
-          const el = document.createElement('a');
-          el.className = 'block p-4 rounded-2xl border hover:shadow';
-          el.href = url;
-          el.innerHTML = `<h3 class='font-semibold'>${post.title}</h3>
-                          <p class='text-sm text-gray-500 mt-1'>${post.date}</p>
-                          <div class='mt-3 flex gap-2 flex-wrap'>${tags}</div>`;
-          box.appendChild(el);
-        });
-    }
-
-    // ====== 简单路由：#/ 与 #/post/:slug ======
-    const homeView = document.getElementById('homeView');
-    const postView = document.getElementById('postView');
-    const postContainer = document.getElementById('postContainer');
-
-    async function showPost(slug){
-      homeView.classList.add('hidden');
-      postView.classList.remove('hidden');
-      // 从 /posts 目录加载 markdown
-      const url = `posts/${slug}.md`;
-      try {
-        const res = await fetch(url);
-        if(!res.ok) throw new Error('not found');
-        const md = await res.text();
-        postContainer.innerHTML = marked.parse(md);
-      } catch (e){
-        postContainer.innerHTML = marked.parse(`# 未找到文章\n\n没有找到 **${slug}.md**。\n\n请在仓库根目录新建 **/posts/${slug}.md**，或者修改 \`SITE.posts\` 列表。`);
-      }
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    function showHome(){
-      postView.classList.add('hidden');
-      homeView.classList.remove('hidden');
-    }
-
-    function router(){
-      const h = location.hash.slice(1); // remove '#'
-      if(!h || h === '/') { showHome(); return; }
-      const m = h.match(/^\/post\/([A-Za-z0-9-_]+)/);
-      if(m){ showPost(m[1]); return; }
-      showHome();
-    }
-    window.addEventListener('hashchange', router);
-
-    // ====== 初始化 ======
-    renderProjects();
-    renderPostList();
-    router();
-  </script>
+      </td>
+    </tr>
+  </table>
 </body>
 </html>
