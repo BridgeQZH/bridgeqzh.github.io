@@ -1,529 +1,325 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zihan Qiao</title>
-  <meta name="description" content="Personal website of Zihan Qiao: robotics, control, autonomous systems, and AI.">
-  <link rel="icon" type="image/svg+xml" href="images/ZQ_favicon.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f6f0e8;
-      --paper: #fffdf8;
-      --paper-strong: #fff8ef;
-      --ink: #1f2a2b;
-      --muted: #5c6b69;
-      --line: #d6c8b4;
-      --accent: #1d6a6d;
-      --accent-soft: #d8ece8;
-      --accent-warm: #d88943;
-      --shadow: 0 18px 45px rgba(31, 42, 43, 0.08);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      font-family: "Manrope", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(216, 236, 232, 0.95), transparent 30%),
-        radial-gradient(circle at top right, rgba(216, 136, 67, 0.15), transparent 24%),
-        linear-gradient(180deg, #f9f4ed 0%, #f6f0e8 50%, #efe6d8 100%);
-      line-height: 1.75;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover,
-    a:focus {
-      color: var(--accent-warm);
-    }
-
-    table {
-      border-collapse: collapse;
-    }
-
-    pageheading,
-    sectionheading,
-    heading {
-      display: inline-block;
-    }
-
-    pageheading {
-      font-family: "Newsreader", serif;
-      font-size: clamp(2.5rem, 5vw, 4.25rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-    }
-
-    sectionheading {
-      font-family: "Newsreader", serif;
-      font-size: 2rem;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    heading {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    p {
-      margin: 0 0 15px;
-    }
-
-    .site-shell {
-      width: min(1040px, calc(100vw - 28px));
-      margin: 28px auto;
-      background: rgba(255, 253, 248, 0.84);
-      border: 1px solid rgba(214, 200, 180, 0.75);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      overflow: hidden;
-    }
-
-    .hero {
-      padding: 22px 22px 10px;
-      background:
-        linear-gradient(135deg, rgba(255, 248, 239, 0.95), rgba(216, 236, 232, 0.7)),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
-      border-bottom: 1px solid rgba(214, 200, 180, 0.8);
-    }
-
-    .hero-table {
-      width: 100%;
-    }
-
-    .hero-table td {
-      padding: 14px;
-      vertical-align: top;
-    }
-
-    .profile-frame {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 248, 239, 0.95));
-      border: 1px solid rgba(214, 200, 180, 0.9);
-      border-radius: 24px;
-      padding: 14px;
-    }
-
-    .profile-frame img {
-      display: block;
-      width: 100%;
-      border-radius: 18px;
-      border: 1px solid rgba(214, 200, 180, 0.7);
-      background: var(--paper-strong);
-    }
-
-    .link-row {
-      margin-top: 16px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .link-row a {
-      display: inline-block;
-      margin: 6px 8px;
-      padding: 7px 12px;
-      background: rgba(216, 236, 232, 0.75);
-      border: 1px solid rgba(29, 106, 109, 0.12);
-      border-radius: 999px;
-      font-weight: 700;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(29, 106, 109, 0.08);
-      color: var(--accent);
-      font-size: 0.86rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .hero-copy {
-      padding-top: 10px;
-    }
-
-    .hero-copy p {
-      font-size: 1.02rem;
-    }
-
-    .hero-note {
-      margin-top: 18px;
-      padding: 16px 18px;
-      border-left: 4px solid var(--accent-warm);
-      border-radius: 16px;
-      background: rgba(255, 248, 239, 0.85);
-      color: #4f5857;
-    }
-
-    .section {
-      padding: 20px 22px 10px;
-    }
-
-    .section + .section {
-      border-top: 1px solid rgba(214, 200, 180, 0.6);
-    }
-
-    .section-heading {
-      margin-bottom: 16px;
-    }
-
-    .intro-line {
-      color: var(--muted);
-      margin-top: 6px;
-      max-width: 760px;
-    }
-
-    .highlights {
-      margin: 0;
-      padding-left: 22px;
-    }
-
-    .highlights li {
-      margin-bottom: 10px;
-      padding-left: 4px;
-    }
-
-    .cards {
-      width: 100%;
-    }
-
-    .cards td {
-      width: 50%;
-      padding: 10px;
-      vertical-align: top;
-    }
-
-    .card {
-      height: 100%;
-      padding: 18px 18px 16px;
-      border: 1px solid rgba(214, 200, 180, 0.85);
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 239, 0.86));
-      box-shadow: 0 10px 24px rgba(31, 42, 43, 0.05);
-    }
-
-    .meta {
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 0.93rem;
-      font-weight: 700;
-    }
-
-    .tag {
-      display: inline-block;
-      margin: 3px 6px 0 0;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: #215456;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .placeholder-card {
-      background:
-        linear-gradient(180deg, rgba(216, 236, 232, 0.42), rgba(255, 255, 255, 0.95)),
-        linear-gradient(135deg, rgba(255, 248, 239, 0.9), rgba(255, 255, 255, 0.9));
-      border-style: dashed;
-    }
-
-    .cv-panel {
-      padding: 18px;
-      border: 1px solid rgba(214, 200, 180, 0.85);
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(216, 236, 232, 0.32));
-    }
-
-    .button-row {
-      margin: 14px 0 16px;
-    }
-
-    .button-row a {
-      display: inline-block;
-      margin: 8px 10px 0 0;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(29, 106, 109, 0.18);
-      background: #ffffff;
-      font-weight: 800;
-    }
-
-    .button-row a.primary {
-      background: var(--accent);
-      color: #ffffff;
-      border-color: var(--accent);
-    }
-
-    .footer {
-      padding: 18px 24px 26px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      text-align: center;
-    }
-
-    @media (max-width: 860px) {
-      .hero-table,
-      .hero-table tbody,
-      .hero-table tr,
-      .hero-table td,
-      .cards,
-      .cards tbody,
-      .cards tr,
-      .cards td {
-        display: block;
-        width: 100%;
-      }
-
-      .hero {
-        padding-bottom: 14px;
-      }
-
-      .hero-table td,
-      .cards td {
-        padding: 10px 0;
-      }
-
-      .site-shell {
-        width: min(100vw - 18px, 1040px);
-        margin: 10px auto;
-        border-radius: 20px;
-      }
-
-      .section,
-      .hero {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-    }
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="HTML Tidy for Linux/x86">
+  <style type="text/css">
+  a {
+    color: #1772d0;
+    text-decoration: none;
+  }
+  a:focus, a:hover {
+    color: #f09228;
+    text-decoration: none;
+  }
+  body, td, th {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  heading {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  strong {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  sectionheading {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  pageheading {
+    font-family: 'Titillium Web', Verdana, Helvetica, sans-serif;
+    font-size: 38px;
+    font-weight: 400;
+  }
+  hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+  .holder {
+    width: 90%;
+    min-height: 180px;
+    margin: 0 auto;
+    border: 1px dashed #999999;
+    border-radius: 14px;
+    background: #fafafa;
+    color: #666666;
+    text-align: center;
+    padding: 22px 16px;
+  }
+  .holder-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .holder-note {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .small-note {
+    color: #666666;
+    font-size: 14px;
+  }
   </style>
+  <link rel="shortcut icon" href="images/ZQ_favicon.jpg">
+  <title>Zihan Qiao</title>
+  <meta name="Zihan Qiao's Homepage" content="Zihan Qiao's Homepage">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-  <table class="site-shell" align="center" role="presentation">
-    <tr>
-      <td>
-        <div class="hero">
-          <table class="hero-table" role="presentation">
-            <tr>
-              <td width="32%">
-                <div class="profile-frame">
-                  <!-- Replace images/profile-placeholder.svg with your own portrait when ready. -->
-                  <a href="images/profile.jpg">
-                    <img src="images/profile.jpg" alt="Placeholder portrait for Zihan Qiao">
-                  </a>
-                </div>
-                <div class="link-row">
-                  <a href="data/ZihanQiao_CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
-                  <a href="mailto:zihanqiao@gmail.com">Email</a>
-                  <a href="https://linkedin.com/in/zihan-qiao-541191193/">LinkedIn</a>
-                  <a href="https://www.zhihu.com/people/BridgeQZH">Zhihu</a>
-                  <a href="https://github.com/BridgeQZH">GitHub</a>
-                  <a href="https://space.bilibili.com/111393619">Bilibili</a>
-                  <a href="https://www.youtube.com/@zihanpoker1006">Youtube</a>
-                </div>
-              </td>
-              <td width="68%">
-                <div class="hero-copy">
-                  <!-- <span class="eyebrow">Personal Website</span><br> -->
-                  <pageheading>Zihan Qiao</pageheading>
-                  <p class="intro-line">Robotics, control, autonomous systems, and AI engineer with a strong interest in building practical systems that connect research ideas to real-world deployment.</p>
-                  <p>I studied <strong>Systems, Control and Robotics</strong> at <strong>KTH Royal Institute of Technology</strong> and earned my bachelor's degree in <strong>Electrical Engineering (Automation)</strong> from <strong>Zhejiang University</strong>. My background combines robotics, perception, planning, reinforcement learning, and production-focused engineering.</p>
-                  <p>Across automotive and autonomous systems work, I have built and tuned control models, debugged system-level integration issues, developed real-time ROS perception and navigation pipelines, and shipped projects spanning drone autonomy, adaptive traffic signal control, and full-stack web applications.</p>
-                  <p>I enjoy work that sits at the boundary of <strong>intelligent systems</strong> and <strong>usable products</strong>: robust enough for reality, but still ambitious enough to be exciting. Outside engineering, I also care about bridge, magic, film, and creative online content.</p>
-                  <!-- <div class="hero-note">
-                    This homepage is set up so you can keep expanding it. You can replace the portrait, update the CV in <code>data/</code>, and add more sections or files as your personal site grows.
-                  </div> -->
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+<table width="900" border="0" align="center" cellspacing="0" cellpadding="20">
+  <tr>
+    <td>
 
-        <div class="section">
-          <div class="section-heading">
-            <sectionheading>Snapshot</sectionheading>
-            <p class="intro-line">A quick overview pulled from your CV so the page already has real content instead of placeholders only.</p>
-          </div>
-          <ul class="highlights">
-            <li>Education: M.S. in Systems, Control and Robotics at KTH Royal Institute of Technology; B.S. in Electrical Engineering (Automation) at Zhejiang University.</li>
-            <li>Technical focus: ROS, SLAM, path planning, computer vision, PyTorch, reinforcement learning, MATLAB/Simulink, Python, C/C++, and production engineering workflows.</li>
-            <li>Industry experience: BorgWarner and Volvo Group Trucks Technology, working on control systems, verification, architecture, and integration debugging.</li>
-            <li>Autonomous systems experience: perception, navigation, MPC path tracking, CV-based recognition, and mission planning in real-world robotics settings.</li>
-            <li>Personal strengths: turning technically complex ideas into working systems, and moving comfortably between research-style prototyping and structured delivery.</li>
-          </ul>
-        </div>
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+        <tr>
+          <td>
+            <p align="center">
+              <pageheading>Zihan Qiao</pageheading><br>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td width="30%" valign="top">
+            <a href="images/profile.jpg"><img src="images/profile.jpg" width="100%" style="border-radius:15px" alt="Zihan Qiao"></a>
+            <p align="center">
+              | <a href="data/ZihanQiao_CV.pdf" target="_blank" rel="noopener noreferrer">CV</a> |
+              <a href="mailto:zihanqiao@gmail.com">Email</a> |
+              <a href="https://github.com/BridgeQZH" target="_blank" rel="noopener noreferrer">Github</a> |
+              <br>
+              | <a href="https://www.linkedin.com/in/zihan-qiao-541191193/" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+            </p>
+          </td>
+          <td width="70%" valign="top" align="justify">
+            <p>I am an engineer with interests across <strong>robotics</strong>, <strong>control systems</strong>, <strong>autonomous systems</strong>, and <strong>AI</strong>. I received my M.S. degree in Systems, Control and Robotics from <a href="https://www.kth.se/en" target="_blank" rel="noopener noreferrer">KTH Royal Institute of Technology</a> and my B.S. degree in Electrical Engineering (Automation) from <a href="https://www.zju.edu.cn/english/" target="_blank" rel="noopener noreferrer">Zhejiang University</a>.</p>
+            <p>My work spans industrial control, verification, perception, planning, and machine learning. I have worked on powertrain actuator systems, vehicle software architecture, ROS-based perception pipelines, and autonomous navigation problems ranging from race cars to drones.</p>
+            <p><strong>Interests:</strong> Robotics, SLAM, path planning, reinforcement learning, computer vision, full-stack product building, and practical engineering for real-world systems.</p>
+            <p><strong>Miscellanea:</strong> Video editing and online content creation, magic and cardistry, bridge and Xiangqi, and films.</p>
+            <p>Email: zihanqiao [AT] gmail [DOT] com</p>
+          </td>
+        </tr>
+      </table>
 
-        <div class="section">
-          <div class="section-heading">
-            <sectionheading>Experience</sectionheading>
-          </div>
-          <table class="cards" role="presentation">
-            <tr>
-              <td>
-                <div class="card">
-                  <heading>BorgWarner</heading>
-                  <div class="meta">Consultant via Combine AB · Landskrona · Sep 2023 to Aug 2025</div>
-                  <p>Worked on hybrid powertrain actuator systems, developing and tuning MATLAB/Simulink control models across multiple functional units.</p>
-                  <p>Tracked down parameter-drift issues behind intermittent MiL/SiL failures and helped improve verification pass rates across product variants.</p>
-                  <span class="tag">MATLAB/Simulink</span>
-                  <span class="tag">Control Systems</span>
-                  <span class="tag">Verification</span>
-                </div>
-              </td>
-              <td>
-                <div class="card">
-                  <heading>Volvo Group Trucks Technology</heading>
-                  <div class="meta">Consultant via Combine AB · Gothenburg · Oct 2022 to Jun 2023</div>
-                  <p>Resolved cross-team integration issues by tracing timing and signal configuration problems across CAN logs, SE-tool definitions, and DBC files.</p>
-                  <p>Designed software architecture for an autonomous vehicle input/output module and prepared a production-ready handover package.</p>
-                  <span class="tag">Automotive</span>
-                  <span class="tag">Systems Integration</span>
-                  <span class="tag">Architecture</span>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="card">
-                  <heading>KTH Formula Student Driverless</heading>
-                  <div class="meta">Perception and Navigation Engineer · Stockholm · Aug 2019 to Jun 2021</div>
-                  <p>Built ROS-based perception for stereo-camera cone detection and helped bring latency within the control-loop deadline.</p>
-                  <p>Implemented MPC path tracking on a real electric race car and tuned behavior for stable autonomous driving on unseen track layouts.</p>
-                  <span class="tag">ROS</span>
-                  <span class="tag">Perception</span>
-                  <span class="tag">MPC</span>
-                </div>
-              </td>
-              <td>
-                <div class="card placeholder-card">
-                  <heading>Next Role / New Section</heading>
-                  <div class="meta">Reserved space for future updates</div>
-                  <p>You can duplicate this card later for new work, publications, research, consulting, teaching, or anything else you want to highlight on the homepage.</p>
-                  <span class="tag">Editable</span>
-                  <span class="tag">Future Content</span>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+      <hr>
 
-        <div class="section">
-          <div class="section-heading">
-            <sectionheading>Selected Projects</sectionheading>
-          </div>
-          <table class="cards" role="presentation">
-            <tr>
-              <td>
-                <div class="card">
-                  <heading>CR Texas</heading>
-                  <div class="meta">Personal project · Jul 2025 to present</div>
-                  <p>Built a full-stack web app inspired by Clash Royale and Texas Hold'em, with seed-based card dealing for reproducible shared sessions.</p>
-                  <p>Added bilingual CN/EN support, responsive UI, deck statistics, and import-friendly interaction design.</p>
-                  <span class="tag">Python</span>
-                  <span class="tag">Flask</span>
-                  <span class="tag">JavaScript</span>
-                </div>
-              </td>
-              <td>
-                <div class="card">
-                  <heading>Adaptive Traffic Signal Control</heading>
-                  <div class="meta">Master thesis · KTH · Nov 2020 to Jun 2021</div>
-                  <p>Designed a DQN-based agent with rollout look-ahead in PyTorch for real-time traffic signal optimization.</p>
-                  <p>Improved throughput and vehicle delay performance compared with fixed-timing and standard DQN baselines across changing traffic densities.</p>
-                  <span class="tag">Reinforcement Learning</span>
-                  <span class="tag">PyTorch</span>
-                  <span class="tag">Optimization</span>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="card">
-                  <heading>Autonomous Drone</heading>
-                  <div class="meta">Vision, SLAM, and mission planning · Feb 2020 to Jun 2020</div>
-                  <p>Integrated computer vision landmark recognition, SLAM mapping, and A* path planning into a Python/ROS autonomous drone system.</p>
-                  <p>Demonstrated a full pickup-and-return mission in a physical indoor obstacle environment.</p>
-                  <span class="tag">SLAM</span>
-                  <span class="tag">A*</span>
-                  <span class="tag">Mission Planning</span>
-                </div>
-              </td>
-              <td>
-                <div class="card placeholder-card">
-                  <heading>More Projects Here</heading>
-                  <div class="meta">Add papers, demos, blog posts, or side projects</div>
-                  <p>This slot is intentionally left open so you can add more personal content later without redesigning the page.</p>
-                  <span class="tag">Portfolio</span>
-                  <span class="tag">Writing</span>
-                  <span class="tag">Demos</span>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+        <tr>
+          <td><sectionheading>&nbsp;&nbsp;Work Experience</sectionheading></td>
+        </tr>
+      </table>
 
-        <div class="section">
-          <div class="section-heading">
-            <sectionheading>CV</sectionheading>
-            <p class="intro-line">The CV is available as a direct file under <code>/data/</code>, so visitors can open it from the site or by direct URL.</p>
-          </div>
-          <div class="cv-panel">
-            <p>The current public path is <a href="data/ZihanQiao_CV.pdf" target="_blank" rel="noopener noreferrer"><code>https://zihanqiao.com/data/ZihanQiao_CV.pdf</code></a> once the custom domain points to this GitHub Pages site.</p>
-            <div class="button-row">
-              <a class="primary" href="data/ZihanQiao_CV.pdf" target="_blank" rel="noopener noreferrer">Open CV In A New Tab</a>
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">BorgWarner</div>
+              <div class="holder-note">Picture / poster / project snapshot holder</div>
+              <div class="holder-note">Replace this block with an image later if you want.</div>
             </div>
-          </div>
-        </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>BorgWarner</heading><br>
+            Consultant via Combine AB, Landskrona<br>
+            Sept 2023 - Aug 2025</p>
+            <p>Developed and tuned MATLAB/Simulink control models for hybrid powertrain actuator systems across 16 functional units. I also tracked down parameter drift issues behind intermittent MiL/SiL failures and helped improve verification pass rates across multiple product variants.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or slides.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
 
-        <div class="section">
-          <div class="section-heading">
-            <sectionheading>Build On This</sectionheading>
-            <p class="intro-line">These are simple content areas you can keep using as the site evolves.</p>
-          </div>
-          <table class="cards" role="presentation">
-            <tr>
-              <td>
-                <div class="card placeholder-card">
-                  <heading>Writing</heading>
-                  <p>Add essays, notes, reflections, or technical blog posts here. You can link them from this section later.</p>
-                </div>
-              </td>
-              <td>
-                <div class="card placeholder-card">
-                  <heading>Media</heading>
-                  <p>Use the <code>images/</code> folder for portraits, project visuals, diagrams, or screenshots as you expand the site.</p>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">Volvo Group Trucks Technology</div>
+              <div class="holder-note">Picture / architecture diagram holder</div>
+              <div class="holder-note">Good place for system diagrams or team project visuals.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>Volvo Group Trucks Technology</heading><br>
+            Consultant via Combine AB, Gothenburg<br>
+            Oct 2022 - Jun 2023</p>
+            <p>Worked on vehicle software and integration problems for autonomous systems. I resolved signal timing and configuration issues across logs, tooling definitions, and DBC files, and also designed software architecture for an autonomous vehicle input/output module.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or slides.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
 
-        <div class="footer">
-          <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Rlh8vsihRKAuGfaO0aiBO1laypqdcPoQIfG30Ry-lws&cl=ffffff&w=a"></script>
-        </div>
-      </td>
-    </tr>
-  </table>
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">KTH Formula Student Driverless</div>
+              <div class="holder-note">Picture / team photo / race car holder</div>
+              <div class="holder-note">This can later be replaced by a competition or vehicle image.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>KTH Formula Student Driverless</heading><br>
+            Perception and Navigation Engineer, Stockholm<br>
+            Aug 2019 - Jun 2021</p>
+            <p>Built real-time ROS perception for stereo-camera cone detection and worked on MPC path tracking for an electric race car. This experience was a strong bridge between robotics research ideas and real-world autonomous system constraints.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or slides.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+      </table>
+
+      <hr>
+
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+        <tr>
+          <td><sectionheading>&nbsp;&nbsp;Projects</sectionheading></td>
+        </tr>
+      </table>
+
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">CR Texas</div>
+              <div class="holder-note">Screenshot / gameplay image holder</div>
+              <div class="holder-note">A future place for UI screenshots or demo visuals.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>CR Texas: Clash Royale x Texas Holdem Game Mode</heading><br>
+            Personal Project<br>
+            Jul 2025 - Present</p>
+            <p>Built a full-stack web app with Python/Flask and vanilla JavaScript, featuring a seed-based dealing system for reproducible shared sessions. The project also includes bilingual CN/EN support, mobile-first UI, and gameplay-oriented deck statistics.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or demo assets.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">Adaptive Traffic Signal Control</div>
+              <div class="holder-note">Figure / experiment plot holder</div>
+              <div class="holder-note">A good place for your RL pipeline or result charts.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>Deep RL for Adaptive Traffic Signal Control</heading><br>
+            Master Thesis, KTH<br>
+            Nov 2020 - Jun 2021</p>
+            <p>Designed a DQN-based agent with rollout look-ahead in PyTorch for real-time traffic phase optimization. The method outperformed fixed-timing baselines and standard DQN in throughput and average vehicle delay across varying traffic densities.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or thesis materials.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">Autonomous Drone</div>
+              <div class="holder-note">Demo image / hardware photo holder</div>
+              <div class="holder-note">This slot works well for an indoor flight photo or mission snapshot.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>Autonomous Drone: Vision, SLAM and Mission Planning</heading><br>
+            Feb 2020 - Jun 2020</p>
+            <p>Built an autonomous drone system in Python/ROS integrating landmark recognition, SLAM mapping, and A* path planning. The system completed a full pickup-and-return mission in a physical indoor obstacle environment.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or demo video.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">Driverless Robot Car</div>
+              <div class="holder-note">Paper figure / robot image holder</div>
+              <div class="holder-note">A useful place for publication visuals or dataset snapshots.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>Driverless Robot Car: Visual Recognition</heading><br>
+            UWA Research Intern (Published)<br>
+            Jul 2018 - Aug 2018</p>
+            <p>Worked on SVM-based visual recognition and path generation on an autonomous car platform using Python and C. This project focused on perception-oriented autonomy in a compact research setting.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or paper materials.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+      </table>
+
+      <hr>
+
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+        <tr>
+          <td><sectionheading>&nbsp;&nbsp;Miscellanea</sectionheading></td>
+        </tr>
+      </table>
+
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="15">
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">Bridge and Xiangqi</div>
+              <div class="holder-note">Photo / event snapshot holder</div>
+              <div class="holder-note">You can later place tournament photos or related visuals here.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>Bridge and Strategy Games</heading></p>
+            <p>I enjoy bridge and Xiangqi, and I like the blend of probability, pattern recognition, memory, and decision making that strategy games bring. This part of my life also connects naturally with how I think about systems and problem solving.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or event photos.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">Magic and Cardistry</div>
+              <div class="holder-note">Performance image holder</div>
+              <div class="holder-note">This can later become a poster, still frame, or performance photo.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>Magic, Cards, and Live Performance</heading></p>
+            <p>I enjoy magic and cardistry as creative outlets. They are fun spaces for presentation, timing, rhythm, and audience connection, which feels very different from engineering but often exercises a similar attention to detail.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or short clips.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+
+        <tr>
+          <td width="40%" valign="top" align="center">
+            <div class="holder">
+              <div class="holder-title">Video Editing and Film</div>
+              <div class="holder-note">Thumbnail / still frame holder</div>
+              <div class="holder-note">A place for channel visuals, edits, or favorite stills.</div>
+            </div>
+          </td>
+          <td width="60%" valign="top">
+            <p><heading>Creative Work Outside Engineering</heading></p>
+            <p>Beyond technical work, I enjoy video editing, online content creation, and films. I like projects that mix storytelling, visual communication, and technical craft, and I want this site to leave room for those parts of me too.</p>
+            <p class="small-note">Optional material link can be added here later, for example a Google Drive folder or portfolio materials.</p>
+            <!-- Optional: <a href="YOUR_GOOGLE_DRIVE_LINK">gdrive</a> -->
+          </td>
+        </tr>
+      </table>
+
+      <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+        <tr>
+          <td align="center">
+            <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Rlh8vsihRKAuGfaO0aiBO1laypqdcPoQIfG30Ry-lws&cl=ffffff&w=a"></script>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
 </body>
 </html>
